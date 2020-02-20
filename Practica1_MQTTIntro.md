@@ -18,7 +18,7 @@ Entregar un reporte de la práctica descrita de manera precisa en un documento. 
 ## Requerimientos
 
 1. Una computadora (De preferencia Raspbian) con conexión a internet con un Broker Instalado (MOSQUITTO)  
-	1.1 [Descargar Raspbian](https://www.raspberrypi.org/downloads/raspbian/)  
+	1.1 [Descargar Raspbian](https://www.raspberrypi.org/downloads/raspbian/)  (verificar con checksum https://www.dyclassroom.com/howto-mac/how-to-verify-checksum-on-a-mac-md5-sha1-sha256-etc)
 	1.2 Instalar Broker MQTT.   
 		Instalar Clientes de mosquitto en Linux. 
 		Aplica para Linux mint y raspbian 

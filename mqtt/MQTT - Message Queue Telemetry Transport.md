@@ -38,7 +38,9 @@ lectura.
 Contiene información propia de la implementación de MQTT, número de clientes,
 clientes activos. etc...
 
-![Resultado de imagen para \$sys topic example](https://lh3.googleusercontent.com/proxy/4PT6EJyboQKX6HbqaF0P3TlbVp4_IrXFaMrAjswemns1wGfKRncPxA9z3rGpSIpaf-7Ud6qPf6ZomN5c5XCFA_Tya9xZ5C6mqzycBnKAzV58ZHYcnmHUsicki2TdKw_RPSx-PGM)
+![Resultado de imagen para \$sys topic example](mqttfxsys.png)
+
+[]()
 
 Los clientes pueden suscribirse a un grupo de tópicos utilizando comodines
 (*wildcard characters* \# (multi nivel) + (nivel simple)).

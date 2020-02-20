@@ -47,7 +47,7 @@ Los clientes pueden suscribirse a un grupo de tópicos utilizando comodines
 
  
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.26.12.png)
+![arboltopicos.png](arboltopicos.png)
 
  
 
@@ -91,13 +91,14 @@ Asocia un cliente a un tópico y pueden ser:
 
 El tipo de suscripción lo define una **bandera de sesión**.
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.19.32.png)
+![transietvsdurable](transietvsdurable.png)
 
  
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.41.58.png)
+![transientvsdurable2](transientvsdurable2.png)
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.42.26.png)
+![](transientvsdurable3.png)
+
 
  
 
@@ -137,7 +138,7 @@ El byte 0 es el menos significativo.
 
  
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.29.53.png)
+![](mqttmessagexchange.png)
 
  
 
@@ -146,7 +147,7 @@ Los clientes informan cada 60 segundos que siguen conectados con el mensaje
 
  
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.39.40.png)
+![](keepalivemsg.png)
 
  
 
@@ -160,7 +161,7 @@ interrupciones causadas por al conexión-desconexión.
 
  
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.34.10.png)
+![duplicateidmsdexample](duplicateidmsdexample.png)
 
  
 
@@ -197,7 +198,7 @@ Ejemplo proceso:
 2.  Si el broker detecta una ruptura de conexión (puede ser por medio del
     mensaje KTL (Keep to live).
 
-![](Captura de Pantalla 2020-02-18 a la(s) 15.38.59.png)
+![](willmessage.png)
 
  
 

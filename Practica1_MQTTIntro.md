@@ -1,30 +1,27 @@
-# Instalación de Raspbian
+# Práctica 1. Introducción a MQTT
 
-Descargar Versión mas nueva de Raspbian. Recomendada la version con el escritorio y software recomendado.
-
-
-
-
-# Práctica 1
-
-En esta práctica revisaremos el funcionamiento general de MQTT visto en clase. 
+En esta práctica revisaremos el funcionamiento general de MQTT visto en clase y aprenderemos a: 
 
 * Definir una jerarquía de tópicos
+* Suscribirnos a diferentes topicos
 * Suscribir con diferentes QoS
 * Publicar con diferentes QoS
-* Experimentar con will message
+* Utilizar `will message`
 * Utilizar `retain flag`
+* Utilizar diferentes clientes para pruebas y diagnóstico.
+* Instalar un broker (MOSQUITTO)
 
-Cada Actividad debe ser reportada y descrita de manera precisa en un documento. Utilizar capturas de pantalla para mostrar la realización exitosa de cada punto.
+
+Entregar un reporte de la práctica descrita de manera precisa en un documento. Utilizar capturas de pantalla para mostrar la realización exitosa de cada punto.
 
 
 ## Requerimientos
 
-1. Una computadora (Raspbian) con conexión a internet con un Broker Instalado (MOSQUITTO)  
-	1.1 [Descargar Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
-	1.2 Instalar Broker MQTT.  
+1. Una computadora (De preferencia Raspbian) con conexión a internet con un Broker Instalado (MOSQUITTO)  
+	1.1 [Descargar Raspbian](https://www.raspberrypi.org/downloads/raspbian/)  
+	1.2 Instalar Broker MQTT.   
 		Instalar Clientes de mosquitto en Linux. 
-		Aplica para Linux mint y raspbian
+		Aplica para Linux mint y raspbian 
 		
 ```
 		$sudo apt-get update  
@@ -34,7 +31,7 @@ Cada Actividad debe ser reportada y descrita de manera precisa en un documento. 
 
 	
 
-1.3 [repositorio oficial mosquitto](https://mosquitto.org/blog/2013/01/mosquitto-debian-repository/)  
+1.3 [Repositorio oficial MOSQUITTO](https://mosquitto.org/blog/2013/01/mosquitto-debian-repository/)  
 1.4 Un cliente MQTT para smartphone (por ejemplo MQTTOOL)  
 1.5 Un cliente Para computadora [MQTT.fx](http://www.jensd.de/apps/mqttfx/1.7.1/)
 
@@ -117,35 +114,5 @@ mosquitto_pub -V mqttv311 -t messenger -m hi
 ```
 mosquitto_pub -V mqttv311 -t messenger -i rod -q 1 -m hi --repeat 1
 ```
-Suscribir con Will Message
 
-```
-$ mosquitto_sub -h 192.168.1.88 -V mqttv311 -t messenger -i cwill --will-topic messenger --will-payload "conexion_inesperada"  
-
-mosquitto_sub -h 192.168.1.88 -t messenger
-```
-
-**Otras notas**
-
-
-```
-(base) jabali-6:~ rodrigolopez$ mosquitto_pub -h 192.168.1.99 -t messenger -q 2 -m hi -d -i rod
-Client rod sending CONNECT
-Client rod received CONNACK (0)
-Client rod sending PUBLISH (d0, q2, r0, m1, 'messenger', ... (2 bytes))
-Client rod received PUBREC (Mid: 1)
-Client rod sending PUBREL (m1)
-Client rod received PUBCOMP (Mid: 1, RC:0)
-Client rod sending DISCONNECT
-
-
-
-
-`(d0, q1, r0, m1, 'messenger', ... (4 bytes))`
-
-`d=duplicate`  
-`q=qos`  
-`r=retain`  
-`[topico]`  
-`tamaño carga util`  
 

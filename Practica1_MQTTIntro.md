@@ -55,15 +55,15 @@ La temperatura es reportada por medio de un termómetro
 El aspersor es un dispositivo mecánico que expulsa una flujo de agua presurizada.
  
 
-  
+Con `mosquitto_sub` y `mosquito_pub`:
+
 2. Crear un cliente con un ID suscrito a uno de esos tópicos con QoS 0.
 
 3. Crear un cliente con un ID y publique en el topico suscrito con Con QoS 0.
 
-4. Probar la creación primero de un cliente que publica y después un cliente que suscribe. 
-
-	4.1 Qué sucede?  
-	4.2 Como el cliente que suscribe podría conocer el mensaje que se publico anteriormente? 
+4. Crear primero un cliente que publica y después un cliente que suscribe con. 
+  4. Qué sucede?  
+  4. Como el cliente que suscribe podría conocer el mensaje que se publico anteriormente? 
 
 5. Crear un cliente con `will message` asociado a un tópico y probarlo en dos escenarios:  
 	5.1 Cuando el cliente se desconecta exitosamente  
@@ -114,5 +114,14 @@ mosquitto_pub -V mqttv311 -t messenger -m hi
 ```
 mosquitto_pub -V mqttv311 -t messenger -i rod -q 1 -m hi --repeat 1
 ```
+
+## Referencias 
+
+[Tutorial Topicos y comodines en MQTT](https://www.luisllamas.es/que-son-y-como-usar-los-topics-en-mqtt-correctamente/)  
+[Steves Internet Guide](http://www.steves-internet-guide.com/understanding-mqtt-qos-2/)  
+[http://www.steves-internet-guide.com/into-mqtt-python-client/](http://www.steves-internet-guide.com/into-mqtt-python-client/)
+
+
+
 
 

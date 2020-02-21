@@ -79,22 +79,26 @@ Con `mosquitto_sub` y `mosquito_pub`:
 
 Utilizar wildcars en los suscriptores y verificar que un cliente recibe mensajes de multiples suscripciones.
 
-Diferencia intercambio de mensajes q2 y q0 con retain
+Diferencia intercambio de mensajes QoS 2 y QoS 0 con retain.
 
 
 
 Quiz:
 
-1. Puede un cliente con un ID específico publicar y suscribirse al mismo tópico?
-2. Puede un broker suscribirse a un cliente?
+1. ¿Puede un cliente con un ID específico publicar y suscribirse al mismo tópico?  (Aquí se pueden apoyar de MQTT.fx)
+2. ¿Puede un broker suscribirse a un cliente?
 
 
 Recomendaciones:
 Utilizar linux ```man``` para conocer las opciones y la utilización de los diferentes comandos.
 
-Levantar Mosquitto Broker en MacOS y Linux (sustituir las respectivas rutas su no están agregadas al PATH):
+Levantar Mosquitto Broker en MacOS o Linux (sustituir las respectivas rutas su no están agregadas al PATH):
+
+**Nota:**
 
 ## Comandos Básicos
+
+Ejecutar el Broker Mosquitto
 
 ```
 /usr/local/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf
@@ -111,9 +115,6 @@ Publicar
 mosquitto_pub -V mqttv311 -t messenger -m hi
 ```
 
-```
-mosquitto_pub -V mqttv311 -t messenger -i rod -q 1 -m hi --repeat 1
-```
 
 ## Referencias 
 

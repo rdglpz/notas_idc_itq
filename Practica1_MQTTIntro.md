@@ -37,8 +37,9 @@ Entregar un reporte de la práctica descrita de manera precisa en un documento. 
 
 
 ## Actividades:  
- 
-1. Diseñar un concepto de prueba de alguna aplicación teórica IdC la cual tenga una conjunto de tópicos. Estos tópicos deben estar organizados en jerarquicamente en un arbol de al menos tres niveles para poder experimentar con los comodites **#** y **+**.  
+
+
+1. Diseñar un concepto de prueba de alguna aplicación teórica IdC la cual tenga una conjunto de tópicos. Estos tópicos deben estar organizados en jerarquicamente en un arbol de al menos tres niveles para poder experimentar con los comodines **#** y **+**.  
 
 Por ejemplo:
 

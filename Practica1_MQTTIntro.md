@@ -50,8 +50,8 @@ Por ejemplo:
 /granja/cultivo1/seccion1/aspersor
 ```
 
-La humedad es reportada por un higrómetro en kg de vapor de agua/$m^3$  
-La temperatura es reportada por medio de un termómetro  
+La humedad es reportada por un higrómetro en kg de vapor de agua/$m^3$.
+La temperatura es reportada por medio de un termómetro digital.  
 El aspersor es un dispositivo mecánico que expulsa una flujo de agua presurizada.
  
 
@@ -89,10 +89,10 @@ Quiz:
 2. ¿Puede un broker suscribirse a un cliente?
 
 
-Recomendaciones:
-Utilizar linux ```man``` para conocer las opciones y la utilización de los diferentes comandos.
+**Recomendaciones:**  
+Utilizar Linux  `man` para conocer las opciones y la utilización de los diferentes comandos.  
 
-Levantar Mosquitto Broker en MacOS o Linux (sustituir las respectivas rutas su no están agregadas al PATH):
+Levantar Mosquitto Broker en MacOS o Linux (sustituir las respectivas rutas si no están agregadas al PATH):
 
 **Nota:**
 

@@ -28,6 +28,13 @@ Entregar un reporte de la práctica descrita de manera precisa en un documento. 
 		$sudo apt-get install mosquitto  
 		$sudo apt-get install mosquitto-client 
 ```
+Actualización: Si no funciona probar
+
+```
+pi@raspberry:~ $ sudo apt update
+pi@raspberry:~ $ sudo apt install -y mosquitto mosquitto-clients
+
+```
 
 	
 

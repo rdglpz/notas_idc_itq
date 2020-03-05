@@ -19,8 +19,9 @@ Instalar Eclipse Paho-mqtt en python con anaconda. (https://anaconda.org/sci-bot
 conda install -c sci-bots paho-mqtt
 
 ```
+Nota: sci-bot no tiene descripción. https://pypi.org/project/scibot/
 
-4. Equivalencia conda vs pip
+3. Equivalencia conda vs pip
 
 ```
 https://docs.conda.io/projects/conda/en/latest/commands.html#conda-vs-pip-vs-virtualenv-commands

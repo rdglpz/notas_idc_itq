@@ -18,4 +18,4 @@ ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.show()
 
 # Dudas obligatorias jueves 19
-#  Para el viernes 20 de Abril 
+#  fecha correcta! -> Para el viernes 20 de Marzo

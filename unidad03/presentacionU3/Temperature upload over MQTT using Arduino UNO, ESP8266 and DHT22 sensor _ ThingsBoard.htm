@@ -1,0 +1,1113 @@
+
+
+
+
+<!Doctype html>
+<html id="docs" class="Guides">
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Temperature upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor | ThingsBoard</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Temperature upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor" />
+<meta name="author" content="thingsboard" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ThingsBoard IoT Platform sample for temperature data upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor." />
+<meta property="og:description" content="ThingsBoard IoT Platform sample for temperature data upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor." />
+<link rel="canonical" href="https://thingsboard.io/docs/samples/arduino/temperature/" />
+<meta property="og:url" content="https://thingsboard.io/docs/samples/arduino/temperature/" />
+<meta property="og:site_name" content="ThingsBoard" />
+<meta property="og:image" content="https://thingsboard.io/images/thingsboard_logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://thingsboard.io/images/thingsboard_logo.png" />
+<meta property="twitter:title" content="Temperature upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor" />
+<meta name="twitter:site" content="@thingsboard" />
+<meta name="twitter:creator" content="@thingsboard" />
+<script type="application/ld+json">
+{"@type":"WebPage","headline":"Temperature upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor","url":"https://thingsboard.io/docs/samples/arduino/temperature/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://thingsboard.io/images/thingsboard_logo.png"},"name":"thingsboard"},"author":{"@type":"Person","name":"thingsboard"},"image":{"twitter":"/images/thingsboard_logo.png","facebook":"/images/thingsboard_logo.png","url":"https://thingsboard.io/images/thingsboard_logo.png","@type":"imageObject"},"description":"ThingsBoard IoT Platform sample for temperature data upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	
+	
+	<meta name="twitter:description" content="ThingsBoard IoT Platform sample for temperature data upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor."/>
+	
+	
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/styles.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gifffer/1.5.0/gifffer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+	<script type="text/javascript">
+        window.onload = function() {
+            Gifffer();
+        }
+	</script>
+	<script type="text/javascript">
+		/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+		!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+		/*! onloadCSS. (onload callback for loadCSS) [c]2017 Filament Group, Inc. MIT License */
+		function onloadCSS(a,b){function c(){!d&&b&&(d=!0,b.call(a))}var d;a.addEventListener&&a.addEventListener("load",c),a.attachEvent&&a.attachEvent("onload",c),"isApplicationInstalled"in navigator&&"onloadcssdefined"in a&&a.onloadcssdefined(c)}
+	</script>
+	<script type="text/javascript">
+
+		function jqueryDefer(method) {
+			if (window.jQuery) {
+				method();
+			} else {
+				setTimeout(function() {
+					jqueryDefer(method)
+				}, 50);
+			}
+		}
+
+        function mermaidDefer(method) {
+            if (window.mermaid) {
+                method();
+            } else {
+                if (!window.mermaidLoading) {
+                    window.mermaidLoading = true;
+                    loadScript("/js/mermaid.min.js", function() {
+                        mermaid.initialize({
+                            startOnLoad:false,
+                            flowchart:{
+                                htmlLabels: true
+                            }
+                        });
+                        jqueryDefer(function() {
+                            setTimeout(function() {
+                                var scroll = $(window).scrollTop();
+                                $('.mermaidTooltip').css("transform", "translate(0px," + (scroll - 40) + "px)");
+                                $(window).scroll(function (event) {
+                                    var scroll = $(window).scrollTop();
+                                    $('.mermaidTooltip').css("transform", "translate(0px," + (scroll - 40) + "px)");
+                                });
+                            }, 300);
+                        });
+                    });
+                }
+                setTimeout(function() {
+                    mermaidDefer(method)
+                }, 50);
+            }
+        }
+
+		function jqueryUiDefer(method) {
+			if (window.jQuery && window.jQuery.ui) {
+				method();
+			} else {
+				setTimeout(function() {
+					jqueryUiDefer(method)
+				}, 50);
+			}
+		}
+
+		window.vis = (function(){
+			var stateKey,
+					eventKey,
+					keys = {
+						hidden: "visibilitychange",
+						webkitHidden: "webkitvisibilitychange",
+						mozHidden: "mozvisibilitychange",
+						msHidden: "msvisibilitychange"
+					};
+			for (stateKey in keys) {
+				if (stateKey in document) {
+					eventKey = keys[stateKey];
+					break;
+				}
+			}
+			return function(c) {
+				if (c) document.addEventListener(eventKey, c);
+				return !document[stateKey];
+			}
+		})();
+
+		function loadScript(src, callback)
+		{
+			var s, r, t;
+			r = false;
+			s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.src = src;
+			s.onload = s.onreadystatechange = function() {
+				if ( !r && (!this.readyState || this.readyState == 'complete') )
+				{
+					r = true;
+					if (callback) {
+						callback();
+					}
+				}
+			};
+			t = document.getElementsByTagName('script')[0];
+			t.parentNode.insertBefore(s, t);
+		}
+
+		function loadCssAsync(src, callback) {
+			var stylesheet = loadCSS( src );
+			if (callback) {
+				onloadCSS(stylesheet, callback);
+			}
+		}
+
+		function loadNextScript(index, scriptsList, completeCallback) {
+			if (index < scriptsList.length) {
+				var script = scriptsList[index];
+				if (script.type === 'script') {
+					loadScript(script.src, function() {
+                        if (script.callback) {
+                            script.callback();
+                        }
+						index++;
+						loadNextScript(index, scriptsList, completeCallback);
+					});
+				} else if (script.type === 'css') {
+					loadCssAsync(script.src, function() {
+						index++;
+						loadNextScript(index, scriptsList, completeCallback);
+					});
+				}
+			} else if (completeCallback) {
+				completeCallback();
+			}
+		}
+
+		var initialScriptsList = [
+			{src: '/js/jquery-2.2.0.min.js', type: 'script'},
+			{src: '/css/jquery-ui.min.css', type: 'css'},
+			{src: '/js/jquery-ui.min.js', type: 'script'},
+			{src: '/js/jquery.vide.js', type: 'script'},
+			{src: '/js/script.js', type: 'script'},
+			{src: '/css/sweetalert.css', type: 'css'},
+			{src: '/js/sweetalert.min.js', type: 'script'}
+		];
+
+		loadNextScript(0, initialScriptsList);
+
+		jqueryDefer(function() {
+			(function ($, win) {
+				$.fn.inViewport = function (cb) {
+					return this.each(function (i, el) {
+						function visPx() {
+							var H = $(this).height(),
+									r = el.getBoundingClientRect(), t = r.top, b = r.bottom;
+							var result = cb.call(el, Math.max(0, t > 0 ? H - t : (b < H ? b : H)));
+							if (result) {
+								$(win).off("resize scroll", visPx);
+							}
+						}
+
+						visPx();
+						$(win).on("resize scroll", visPx);
+					});
+				};
+			}(jQuery, window));
+		});
+
+		function inViewportDefer(method) {
+			if (window.jQuery && $.fn.inViewport) {
+				method();
+			} else {
+				setTimeout(function() {
+					inViewportDefer(method)
+				}, 50);
+			}
+		}
+
+	</script>
+	<script type="text/javascript">
+		function _gaLt(event) {
+			/* If GA is blocked or not loaded, or not main|middle|touch click then don't track */
+			if (!ga.hasOwnProperty("loaded") || ga.loaded != true || (event.which != 1 && event.which != 2)) {
+				return;
+			}
+			var el = event.srcElement || event.target;
+
+			while (el && (typeof el.tagName == 'undefined' || el.tagName.toLowerCase() != 'a' || !el.href)) {
+				el = el.parentNode;
+			}
+			if (el && el.href) {
+				var link = el.href;
+				if ((link.indexOf(location.host) == -1 || link.indexOf('.' + location.host) > 0) && !link.match(/^javascript\:/i)) {
+					var target = (el.target && !el.target.match(/^_(self|parent|top)$/i)) ? el.target : false;
+					if (event.ctrlKey || event.shiftKey || event.metaKey || event.which == 2) {
+						target = "_blank";
+					}
+
+					var hbrun = false; // tracker has not yet run
+					var hitBack = function() {
+						if (hbrun) return;
+						hbrun = true;
+						window.location.href = link;
+					};
+
+					if (target) {
+						ga(
+								"send", "event", "Outgoing Links", link,
+								document.location.pathname + document.location.search
+						);
+					} else {
+						event.preventDefault ? event.preventDefault() : event.returnValue = !1;
+						ga(
+								"send", "event", "Outgoing Links", link,
+								document.location.pathname + document.location.search, {
+									"hitCallback": hitBack
+								}
+						);
+
+						setTimeout(hitBack, 1000);
+					}
+				}
+			}
+		}
+
+		var _w = window;
+		var _gaLtEvt = ("ontouchstart" in _w) ? "click" : "mousedown";
+		_w.addEventListener ? _w.addEventListener("load", function() {document.body.addEventListener(_gaLtEvt, _gaLt, !1)}, !1)
+				: _w.attachEvent && _w.attachEvent("onload", function() {document.body.attachEvent("on" + _gaLtEvt, _gaLt)});
+	</script>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-567QDCQ');</script>
+	<!-- End Google Tag Manager -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-88383331-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- Start of HubSpot Embed Code -->
+	<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4596551.js"></script>
+	<!-- End of HubSpot Embed Code -->
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-567QDCQ"
+				  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="cellophane" onclick="tb.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div id="githubButtonContainer">
+        <a class="github-button" href="https://github.com/thingsboard/thingsboard" data-show-count="true" aria-label="Star thingsboard/thingsboard on GitHub">Star</a>
+    </div>
+    <div class="nav-buttons nav-buttons-left" data-auto-burger="primary">
+        <a href="/installations/" class="button center-button" id="tryItNow" data-auto-burger-exclude>Try it now</a>
+        <!--a href="/docs/guides/" class="button center-button" id="guides" data-auto-burger-exclude>Guides</a-->
+        <!--a target="_blank" href="https://demo.thingsboard.io/signup" class="button center-button" id="liveDemo" data-auto-burger-exclude>Live demo</a-->
+    </div>
+    <div class="nav-buttons nav-buttons-right" data-auto-burger="primary">
+        <div class="nav-items">
+            <div class="nav-item-container">
+                <a href="javascript:void(0);" class="nav-item" id="solutions" onclick="tb.openMenu('solutionsNav', 'solutions')" data-auto-burger-exclude>Solutions</a>
+            </div>
+            <div class="nav-item-container">
+                <a href="javascript:void(0);" class="nav-item" id="customers" onclick="tb.openMenu('customersNav', 'customers')" data-auto-burger-exclude>Customers</a>
+            </div>
+            <div class="nav-item-container">
+                <a href="javascript:void(0);" class="nav-item" id="use_cases" onclick="tb.openMenu('useCasesNav', 'use_cases')" data-auto-burger-exclude>Use Cases</a>
+            </div>
+            <div class="nav-item-container">
+                <a href="javascript:void(0);" class="nav-item" id="partners_menu" onclick="tb.openMenu('partnersNav', 'partners_menu')" data-auto-burger-exclude>Partners</a>
+            </div>
+            <div class="nav-item-container">
+                <a href="javascript:void(0);" class="nav-item" id="about_us" onclick="tb.openMenu('aboutUsNav', 'about_us')" data-auto-burger-exclude>About Us</a>
+            </div>
+        </div>
+        <a href="/pricing/" class="button center-button" id="viewPricing" data-auto-burger-exclude>Pricing</a>
+        <a href="/docs/" class="button center-button" id="viewDocs" data-auto-burger-exclude>Docs</a>
+        <a href="/docs/guides/" class="button center-button" id="guides" data-auto-burger-exclude>Guides</a>
+		<button id="hamburger" onclick="tb.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main id="headNav" data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/getting-started-guides/helloworld/">Get Started</a></h3>
+			</div>
+			<!--div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+			</div-->
+            <div class="nav-box">
+                <h3><a href="/docs/guides/">Guides</a></h3>
+            </div>
+			<div class="nav-box">
+				<h3><a href="/iot-use-cases/">Use cases</a></h3>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.thingsboard.io/">Blog</a></h3>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/services/">Services</a></h3>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/contact-us/">Contact us</a></h3>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="center">
+				<div class="social">
+					<a href="https://twitter.com/thingsboard" class="twitter"><span>Twitter</span></a>
+					<a href="https://github.com/thingsboard/thingsboard" class="github"><span>Github</span></a>
+					<a href="https://gitter.im/thingsboard/chat" class="gitter"><span>Gitter</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/thingsboard" class="stack-overflow"><span>Stack Overflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/thingsboard" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://www.youtube.com/thingsboard" class="youtube"><span>YouTube Channel</span></a>
+					<a href="https://www.facebook.com/thingsboard" class="facebook"><span>Facebook Page</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+	<nav id="solutionsNav" class="nav-menu">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<img src="/images/head-solutions.svg">
+			</div>
+			<div class="nav-box">
+				<ul>
+					<a href="/products/" target="_self">
+						<li><strong>Products</strong></li>
+					</a>
+					<a href="/docs/getting-started-guides/what-is-thingsboard/" target="_self">
+						<li><span>ThingsBoard Community Edition</span></li>
+					</a>
+					<a href="/products/thingsboard-pe/" target="_self">
+						<li><span>ThingsBoard Professional Edition</span></li>
+					</a>
+					<a href="/docs/iot-gateway/what-is-iot-gateway/" target="_self">
+						<li><span>ThingsBoard IoT Gateway</span></li>
+					</a>
+					<a href="/products/license-server/" target="_self">
+						<li><span>ThingsBoard License Server</span></li>
+					</a>
+					<a href="/products/trendz/" target="_self">
+						<li><span>ThingsBoard Trendz Analytics</span></li>
+					</a>
+				</ul>
+			</div>
+			<div class="nav-box">
+				<ul>
+					<a href="/docs/services/" target="_self">
+						<li><strong>Services</strong></li>
+					</a>
+					<a href="/docs/services/support/" target="_self">
+						<li><span>Support</span></li>
+					</a>
+					<a href="/docs/services/trainings/" target="_self">
+						<li><span>Trainings</span></li>
+					</a>
+					<a href="/docs/services/consulting/" target="_self">
+						<li><span>Professional services</span></li>
+					</a>
+				</ul>
+			</div>
+		</main>
+	</nav>
+	<nav id="customersNav" class="nav-menu">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<img src="/images/head-customers.svg">
+			</div>
+			<div class="nav-box">
+			</div>
+			<div class="nav-box">
+				<ul>
+					<a href="/industries/" target="_self">
+						<li><strong>Industries</strong></li>
+					</a>
+					<a href="/industries/smart-energy/" target="_self">
+						<li><span>Smart Energy</span></li>
+					</a>
+					<a href="/industries/agriculture/" target="_self">
+						<li><span>Agriculture</span></li>
+					</a>
+					<a href="/industries/smart-buildings/" target="_self">
+						<li><span>Smart Buildings</span></li>
+					</a>
+					<a href="/industries/smart-city/" target="_self">
+						<li><span>Smart City</span></li>
+					</a>
+					<a href="/industries/telecom/" target="_self">
+						<li><span>Telecom</span></li>
+					</a>
+					<a href="/industries/industry40/" target="_self">
+						<li><span>Industry 4.0</span></li>
+					</a>
+				</ul>
+			</div>
+		</main>
+	</nav>
+	<nav id="useCasesNav" class="nav-menu">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<img src="/images/head-use-cases.svg">
+			</div>
+			<div class="nav-box">
+			</div>
+			<div class="nav-box">
+				<ul>
+					<a href="/iot-use-cases/" target="_self">
+						<li><strong>IoT use cases</strong></li>
+					</a>
+					<a href="/smart-metering/" target="_self">
+						<li><span>Smart Metering</span></li>
+					</a>
+					<a href="/smart-energy/" target="_self">
+						<li><span>Smart Energy</span></li>
+					</a>
+					<a href="/smart-farming/" target="_self">
+						<li><span>Smart Farming</span></li>
+					</a>
+					<a href="/fleet-tracking/" target="_self">
+						<li><span>Fleet Tracking</span></li>
+					</a>
+				</ul>
+			</div>
+		</main>
+	</nav>
+    <nav id="partnersNav" class="nav-menu">
+        <main data-auto-burger="primary">
+            <div class="nav-box">
+                <img src="/images/head-partners.svg">
+            </div>
+            <div class="nav-box">
+            </div>
+            <div class="nav-box">
+                <ul>
+                    <a href="/partners/hardware/" target="_self">
+                        <li><strong>Partners</strong></li>
+                    </a>
+                    <a href="/partners/hardware/" target="_self">
+                        <li><span>Hardware partners</span></li>
+                    </a>
+                </ul>
+            </div>
+        </main>
+    </nav>
+	<nav id="aboutUsNav" class="nav-menu">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<img src="/images/head-about-us.svg">
+			</div>
+			<div class="nav-box">
+			</div>
+			<div class="nav-box">
+				<ul>
+					<a href="/company/" target="_self">
+						<li><strong>Our Company</strong></li>
+					</a>
+					<a href="/docs/contact-us/" target="_self">
+						<li><span>Contact Us</span></li>
+					</a>
+					<a href="/mediakit/" target="_self">
+						<li><span>Media Kit</span></li>
+					</a>
+					<a href="https://blog.thingsboard.io/">
+						<li><span>Blog</span></li>
+					</a>
+				</ul>
+			</div>
+
+		</main>
+	</nav>
+</header>
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <div id="hero-content">
+    <h1>Guides</h1>
+    <h5>Explore ThingsBoard tutorials and guides.</h5>
+    <!--h5>Explore ThingsBoard tutorials and guides. Open <a style="font-weight: 500; color: #50b1ff;" href="http://v14.thingsboard.io/docs">documentation</a> for releases before 2.0</h5-->
+    <!--<h5>-->
+      <!--<div id="pe-docs-banner">-->
+        <!--<img src="/images/new-icon-blue.svg"/>-->
+        <!--<div><a class="pe-link" href="/products/thingsboard-pe/">ThingsBoard Professional Edition</a> with White-labeling and Platform Integrations <a class="pe-learn-more" href="/products/thingsboard-pe/">Learn More</a></div>-->
+      <!--</div>-->
+    <!--</h5>-->
+    <div id="vendorStrip" class="light-text">
+      <div id="docsList">
+          <ul>
+            <li><a href="/docs/" >DOCS HOME</a></li>
+            <li><a href="/docs/getting-started-guides/helloworld/" >GETTING STARTED</a></li>
+            <li><a href="/docs/guides/" class="YAH">GUIDES</a></li>
+            <li><a href="/docs/installation/" >INSTALLATION</a></li>
+            <li><a href="/docs/reference/" >ARCHITECTURE</a></li>
+            <li><a href="/docs/api/" >API</a></li>
+            <li><a href="/docs/faq/" >FAQ</a></li>
+            <li><a href="/docs/contact-us/" >CONTACT US</a></li>
+          </ul>
+      </div>
+      <div id="searchBox">
+        <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section id="encyclopedia">
+  
+  <div id="docsContent" class="noToc">
+    <h1>Temperature upload over MQTT using Arduino UNO, ESP8266 and DHT22 sensor</h1>
+    <ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#list-of-hardware-and-pinouts" id="markdown-toc-list-of-hardware-and-pinouts">List of hardware and pinouts</a></li>
+  <li><a href="#esp8266-firmware" id="markdown-toc-esp8266-firmware">ESP8266 Firmware</a></li>
+  <li><a href="#wiring-scheme" id="markdown-toc-wiring-scheme">Wiring scheme</a></li>
+  <li><a href="#thingsboard-configuration" id="markdown-toc-thingsboard-configuration">ThingsBoard configuration</a>    <ul>
+      <li><a href="#provision-your-device" id="markdown-toc-provision-your-device">Provision your device</a></li>
+      <li><a href="#provision-your-dashboard" id="markdown-toc-provision-your-dashboard">Provision your dashboard</a></li>
+    </ul>
+  </li>
+  <li><a href="#programming-the-arduino-uno-device" id="markdown-toc-programming-the-arduino-uno-device">Programming the Arduino UNO device</a>    <ul>
+      <li><a href="#step-1-arduino-uno-and-arduino-ide-setup" id="markdown-toc-step-1-arduino-uno-and-arduino-ide-setup">Step 1. Arduino UNO and Arduino IDE setup.</a></li>
+      <li><a href="#step-2-install-arduino-libraries" id="markdown-toc-step-2-install-arduino-libraries">Step 2. Install Arduino libraries.</a></li>
+      <li><a href="#step-3-prepare-and-upload-a-sketch" id="markdown-toc-step-3-prepare-and-upload-a-sketch">Step 3. Prepare and upload a sketch.</a></li>
+    </ul>
+  </li>
+  <li><a href="#troubleshooting" id="markdown-toc-troubleshooting">Troubleshooting</a></li>
+  <li><a href="#data-visualization" id="markdown-toc-data-visualization">Data visualization</a></li>
+  <li><a href="#see-also" id="markdown-toc-see-also">See also</a></li>
+  <li><a href="#your-feedback" id="markdown-toc-your-feedback">Your feedback</a></li>
+  <li><a href="#next-steps" id="markdown-toc-next-steps">Next steps</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+<p>ThingsBoard is an open-source server-side platform that allows you to monitor and control IoT devices.
+It is free for both personal and commercial usage and you can deploy it anywhere. 
+If this is your first experience with the platform we recommend to review 
+<a href="/docs/getting-started-guides/what-is-thingsboard/">what-is-thingsboard</a> page and <a href="/docs/getting-started-guides/helloworld/">getting-started</a> guide.</p>
+
+<p>This sample application performs collection of temperature and humidity values produced by <a href="https://www.adafruit.com/product/385">DHT22 sensor</a> and further visualization on the real-time web dashboard.
+Collected data is pushed via MQTT to ThingsBoard server for storage and visualization.
+The purpose of this application is to demonstrate ThingsBoard <a href="/docs/user-guide/telemetry/">data collection API</a> and <a href="/docs/user-guide/visualization/">visualization capabilities</a>.</p>
+
+<p>The DHT22 sensor is connected to <a href="https://en.wikipedia.org/wiki/Arduino">Arduino UNO</a>.
+Arduino UNO connects to the WiFi network using <a href="https://en.wikipedia.org/wiki/ESP8266">ESP8266</a>.
+Arduino UNO pushes data to ThingsBoard server via MQTT protocol by using <a href="https://github.com/knolleary/pubsubclient">PubSubClient</a> library for Arduino.
+Data is visualized using built-in customizable dashboard.
+The application that is running on Arduino UNO is written using Arduino SDK which is quite simple and easy to understand.</p>
+
+<p>Once you complete this sample/tutorial, you will see your sensor data on the following dashboard.</p>
+
+<p><img src="/images/samples/arduino/temperature/dashboard.png" alt="image" /></p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>You will need to have ThingsBoard server up and running. Use either <a href="https://demo.thingsboard.io/signup">Live Demo</a> or
+<a href="/docs/user-guide/install/installation-options/">Installation Guide</a> to install ThingsBoard.</p>
+
+<h2 id="list-of-hardware-and-pinouts">List of hardware and pinouts</h2>
+
+<ul>
+  <li><a href="https://store.arduino.cc/product/GBX00066">Arduino UNO</a></li>
+</ul>
+
+<p><img src="/images/samples/arduino/temperature/arduino-uno-pinout.png" alt="image" /></p>
+
+<ul>
+  <li><a href="https://www.aliexpress.com/item/Free-shipping-50pcs-lot-ESP8266-serial-WIFI-wireless-module-wireless-transceiver/32257568124.html?spm=2114.03010208.3.126.6Ir2oN&amp;ws_ab_test=searchweb0_0,searchweb201602_2_10065_10068_10084_10083_10080_10082_10081_10060_10061_10062_10056_10055_10054_10059_10099_10078_10079_10093_426_10073_10103_10102_10096_10052_10050_10051,searchweb201603_6&amp;btsid=5ad90a6c-2282-48ee-a450-5ab29e2e5d84">ESP8266 module</a></li>
+</ul>
+
+<p><img src="/images/samples/arduino/temperature/esp8266-pinout.png" alt="image" /></p>
+
+<ul>
+  <li><a href="https://www.aliexpress.com/item/1pcs-DHT22-digital-temperature-and-humidity-sensor-Temperature-and-humidity-module-AM2302-replace-SHT11-SHT15/32316036161.html?spm=2114.03010208.3.49.aZvfaG&amp;ws_ab_test=searchweb0_0,searchweb201602_2_10065_10068_10084_10083_10080_10082_10081_10060_10061_10062_10056_10055_10054_10059_10099_10078_10079_10093_426_10073_10103_10102_10096_10052_10050_10051,searchweb201603_6&amp;btsid=28d9ee9a-283a-4e97-af7b-a7e530490916">DHT22 sensor</a></li>
+</ul>
+
+<p><img src="/images/samples/arduino/temperature/dht22-pinout.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>Resistor (between 4.7K and 10K)</p>
+  </li>
+  <li>
+    <p>Breadboard</p>
+  </li>
+  <li>
+    <p>2 female-to-female jumper wires</p>
+  </li>
+  <li>
+    <p>11 female-to-male jumper wires</p>
+  </li>
+  <li>
+    <p>3 male-to-male jumper wire</p>
+  </li>
+</ul>
+
+<h2 id="esp8266-firmware">ESP8266 Firmware</h2>
+
+<p>In the current tutorial <a href="https://github.com/bportaluri/WiFiEsp">WiFiEsp Arduino library</a> is used to connect Arduino board to the internet.
+This library supports ESP SDK version 1.1.1 and above (AT version 0.25 and above).
+Please make sure that your ESP8266 has compatible firmware. You can download and flash <a href="http://www.espruino.com/files/ESP8266_AT25-SDK112-512k.bin">AT25-SDK112 firmware</a> which is tested in this tutorial.</p>
+
+<p>Please note that serial baud rate of ESP8266 should be set to 9600 by the following AT command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AT+UART_DEF<span class="o">=</span>9600,8,1,0,0
+</code></pre></div></div>
+
+<h2 id="wiring-scheme">Wiring scheme</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Arduino UNO Pin</th>
+      <th>ESP8266 Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Arduino UNO 3.3V</td>
+      <td>ESP8266 VCC</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO 3.3V</td>
+      <td>ESP8266 CH_PD</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO GND</td>
+      <td>ESP8266 GND (-)</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO D2</td>
+      <td>ESP8266 RX</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO D3</td>
+      <td>ESP8266 TX</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Arduino UNO Pin</th>
+      <th>DHT-22 Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Arduino UNO 5V</td>
+      <td>DHT-22 VCC</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO GND</td>
+      <td>DHT-22 GND (-)</td>
+    </tr>
+    <tr>
+      <td>Arduino UNO D4</td>
+      <td>DHT-22 Data</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally, place a resistor (between 4.7K and 10K) between pin number 1 and 2 of the DHT sensor.</p>
+
+<p>The following picture summarizes the connections for this project:</p>
+
+<p><img src="/images/samples/arduino/temperature/schema.png" alt="image" /></p>
+
+<h2 id="thingsboard-configuration">ThingsBoard configuration</h2>
+
+<p><strong>Note</strong> ThingsBoard configuration steps are necessary only in case of <strong>local ThingsBoard installation</strong>.
+If you are using <a href="https://demo.thingsboard.io/"><strong>Live Demo</strong></a> instance all entities are pre-configured for your demo account.
+However, we recommend reviewing this steps because you will still need to get device access token to send requests to ThingsBoard.</p>
+
+<h3 id="provision-your-device">Provision your device</h3>
+
+<p>This step contains instructions that are necessary to connect your device to ThingsBoard.</p>
+
+<p>Open ThingsBoard Web UI (http://localhost:8080) in browser and login as tenant administrator</p>
+
+<ul>
+  <li>login: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f5e4efe0eff5c1f5e9e8efe6f2e3eee0f3e5afeef3e6">[email&#160;protected]</a></li>
+  <li>password: tenant</li>
+</ul>
+
+<p>Go to “Devices” section. Click “+” button and create a device with the name “Arduino UNO Demo Device”.</p>
+
+<p><img src="/images/samples/arduino/temperature/device.png" alt="image" /></p>
+
+<p>Once device created, open its details and click “Manage credentials”.</p>
+
+<p>Copy auto-generated access token from the “Access token” field. Please save this device token. It will be referred to later as <strong>$ACCESS_TOKEN</strong>.</p>
+
+<p><img src="/images/samples/arduino/temperature/credentials.png" alt="image" /></p>
+
+<h3 id="provision-your-dashboard">Provision your dashboard</h3>
+
+<p>Download the dashboard file using this <a href="/docs/samples/arduino/resources/arduino_dht_temp_dashboard_v2.json"><strong>link</strong></a>.
+Use import/export <a href="/docs/user-guide/ui/dashboards/#dashboard-importexport"><strong>instructions</strong></a> to import the dashboard to your ThingsBoard instance.</p>
+
+<h2 id="programming-the-arduino-uno-device">Programming the Arduino UNO device</h2>
+
+<p>If you already familiar with basics of Arduino UNO programming using Arduino IDE you can skip the following step and proceed with step 2.</p>
+
+<h3 id="step-1-arduino-uno-and-arduino-ide-setup">Step 1. Arduino UNO and Arduino IDE setup.</h3>
+<p>In order to start programming the Arduino UNO device, you will need Arduino IDE and all related software installed.</p>
+
+<p>Download and install <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>.</p>
+
+<p>To learn how to connect your Uno board to the computer and upload your first sketch please follow this <a href="https://www.arduino.cc/en/Guide/ArduinoUno">guide</a>.</p>
+
+<h3 id="step-2-install-arduino-libraries">Step 2. Install Arduino libraries.</h3>
+
+<p>Open Arduino IDE and go to <strong>Sketch -&gt; Include Library -&gt; Manage Libraries</strong>.
+Find and install the following libraries:</p>
+
+<ul>
+  <li><a href="http://pubsubclient.knolleary.net/">PubSubClient by Nick O’Leary</a></li>
+  <li><a href="https://github.com/bportaluri/WiFiEsp">WiFiEsp by bportaluri</a></li>
+  <li><a href="https://github.com/adafruit/Adafruit_Sensor">Adafruit Unified Sensor by Adafruit</a></li>
+  <li><a href="https://github.com/adafruit/DHT-sensor-library">DHT sensor library by Adafruit</a></li>
+  <li><a href="https://github.com/thingsboard/ThingsBoard-Arduino-MQTT-SDK">Arduino ThingsBoard SDK by ThingsBoard</a></li>
+  <li><a href="https://github.com/bblanchon/ArduinoJson">ArduinoJSON by bblanchon</a></li>
+  <li><a href="https://github.com/arduino-libraries/ArduinoHttpClient">Arduino Http Client</a></li>
+</ul>
+
+<p><strong>Note</strong> that this tutorial was tested with the following versions of the libraries:</p>
+
+<ul>
+  <li>PubSubClient 2.6</li>
+  <li>WiFiEsp 2.1.2</li>
+  <li>Adafruit Unified Sensor 1.0.2</li>
+  <li>DHT sensor library 1.3.0</li>
+  <li>Arduino ThingsBoard SDK 0.4</li>
+  <li>ArduinoJSON 6.10.1</li>
+  <li>Arduino Http Client 0.4.0</li>
+</ul>
+
+<h3 id="step-3-prepare-and-upload-a-sketch">Step 3. Prepare and upload a sketch.</h3>
+
+<p>Download and open <strong>arduino-dht-esp8266-mqtt.ino</strong> sketch.</p>
+
+<p><strong>Note</strong> You need to edit following constants and variables in the sketch:</p>
+
+<ul>
+  <li>WIFI_AP - name of your access point</li>
+  <li>WIFI_PASSWORD - access point password</li>
+  <li>TOKEN - the <strong>$ACCESS_TOKEN</strong> from ThingsBoard configuration step.</li>
+  <li>thingsboardServer - ThingsBoard HOST/IP address that is accessible from within your wifi network. Specify “demo.thingsboard.io” if you are using <a href="https://demo.thingsboard.io/">live demo</a> server.</li>
+</ul>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  jqueryUiDefer(initTabs);
+  function initTabs() {
+    $(function(){$("#arduino-sketch").tabs();});
+  }
+</script>
+
+<div id="arduino-sketch">
+  <ul>
+    <li><a href="#arduino-dht-esp8266-mqtt">arduino-dht-esp8266-mqtt.ino</a></li>
+  </ul>
+  <div id="arduino-dht-esp8266-mqtt">
+    <table class="includecode"><thead><tr><th><a href="https://raw.githubusercontent.com/thingsboard/thingsboard.github.io/master/docs/samples/arduino/resources/arduino-dht-esp8266-mqtt.ino" download="resources/arduino-dht-esp8266-mqtt.ino"><code>resources/arduino-dht-esp8266-mqtt.ino</code></a><img src="/images/copycode.svg" style="max-height:24px" onclick="copyCode('resources/arduino-dht-esp8266-mqtt.ino')" title="Copy resources/arduino-dht-esp8266-mqtt.ino to clipboard" /></th></tr></thead>
+<tr><td>
+<div id="resources/arduino-dht-esp8266-mqtt.ino" class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "DHT.h"
+#include &lt;WiFiEspClient.h&gt;
+#include &lt;WiFiEsp.h&gt;
+#include &lt;WiFiEspUdp.h&gt;
+#include "SoftwareSerial.h"
+#include &lt;ThingsBoard.h&gt;
+</span>
+<span class="cp">#define WIFI_AP "YOUR_WIFI_AP"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+</span>
+<span class="cp">#define TOKEN "YOUR_ACCESS_TOKEN"
+</span>
+<span class="c1">// DHT</span>
+<span class="cp">#define DHTPIN 4
+#define DHTTYPE DHT22
+</span>
+<span class="kt">char</span> <span class="n">thingsboardServer</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"YOUR_THINGSBOARD_HOST_OR_IP"</span><span class="p">;</span>
+
+<span class="c1">// Initialize the Ethernet client object</span>
+<span class="n">WiFiEspClient</span> <span class="n">espClient</span><span class="p">;</span>
+
+<span class="c1">// Initialize DHT sensor.</span>
+<span class="n">DHT</span> <span class="nf">dht</span><span class="p">(</span><span class="n">DHTPIN</span><span class="p">,</span> <span class="n">DHTTYPE</span><span class="p">);</span>
+
+<span class="n">ThingsBoard</span> <span class="nf">tb</span><span class="p">(</span><span class="n">espClient</span><span class="p">);</span>
+
+<span class="n">SoftwareSerial</span> <span class="nf">soft</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX</span>
+
+<span class="kt">int</span> <span class="n">status</span> <span class="o">=</span> <span class="n">WL_IDLE_STATUS</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastSend</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// initialize serial for debugging</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="n">dht</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="n">InitWiFi</span><span class="p">();</span>
+  <span class="n">lastSend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Attempting to connect to WPA SSID: "</span><span class="p">);</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WIFI_AP</span><span class="p">);</span>
+      <span class="c1">// Connect to WPA/WPA2 network</span>
+      <span class="n">status</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">WIFI_AP</span><span class="p">,</span> <span class="n">WIFI_PASSWORD</span><span class="p">);</span>
+      <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Connected to AP"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">tb</span><span class="p">.</span><span class="n">connected</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">reconnect</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span> <span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">lastSend</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">// Update and send only after 1 seconds</span>
+    <span class="n">getAndSendTemperatureAndHumidityData</span><span class="p">();</span>
+    <span class="n">lastSend</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">tb</span><span class="p">.</span><span class="n">loop</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">getAndSendTemperatureAndHumidityData</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Collecting temperature data."</span><span class="p">);</span>
+
+  <span class="c1">// Reading temperature or humidity takes about 250 milliseconds!</span>
+  <span class="kt">float</span> <span class="n">humidity</span> <span class="o">=</span> <span class="n">dht</span><span class="p">.</span><span class="n">readHumidity</span><span class="p">();</span>
+  <span class="c1">// Read temperature as Celsius (the default)</span>
+  <span class="kt">float</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">dht</span><span class="p">.</span><span class="n">readTemperature</span><span class="p">();</span>
+
+  <span class="c1">// Check if any reads failed and exit early (to try again).</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isnan</span><span class="p">(</span><span class="n">humidity</span><span class="p">)</span> <span class="o">||</span> <span class="n">isnan</span><span class="p">(</span><span class="n">temperature</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Failed to read from DHT sensor!"</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Sending data to ThingsBoard:"</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Humidity: "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">humidity</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" %</span><span class="se">\t</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Temperature: "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">" *C "</span><span class="p">);</span>
+
+  <span class="n">tb</span><span class="p">.</span><span class="n">sendTelemetryFloat</span><span class="p">(</span><span class="s">"temperature"</span><span class="p">,</span> <span class="n">temperature</span><span class="p">);</span>
+  <span class="n">tb</span><span class="p">.</span><span class="n">sendTelemetryFloat</span><span class="p">(</span><span class="s">"humidity"</span><span class="p">,</span> <span class="n">humidity</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">InitWiFi</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// initialize serial for ESP module</span>
+  <span class="n">soft</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="c1">// initialize ESP module</span>
+  <span class="n">WiFi</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">soft</span><span class="p">);</span>
+  <span class="c1">// check for the presence of the shield</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">==</span> <span class="n">WL_NO_SHIELD</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"WiFi shield not present"</span><span class="p">);</span>
+    <span class="c1">// don't continue</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Connecting to AP ..."</span><span class="p">);</span>
+  <span class="c1">// attempt to connect to WiFi network</span>
+  <span class="k">while</span> <span class="p">(</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Attempting to connect to WPA SSID: "</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WIFI_AP</span><span class="p">);</span>
+    <span class="c1">// Connect to WPA/WPA2 network</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">WIFI_AP</span><span class="p">,</span> <span class="n">WIFI_PASSWORD</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Connected to AP"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">reconnect</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Loop until we're reconnected</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">tb</span><span class="p">.</span><span class="n">connected</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Connecting to ThingsBoard node ..."</span><span class="p">);</span>
+    <span class="c1">// Attempt to connect (clientId, username, password)</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">tb</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">thingsboardServer</span><span class="p">,</span> <span class="n">TOKEN</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span> <span class="s">"[DONE]"</span> <span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span> <span class="s">"[FAILED]"</span> <span class="p">);</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span> <span class="s">" : retrying in 5 seconds"</span> <span class="p">);</span>
+      <span class="c1">// Wait 5 seconds before retrying</span>
+      <span class="n">delay</span><span class="p">(</span> <span class="mi">5000</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+</td></tr></table>
+  </div>
+</div>
+
+<p>Connect your Arduino UNO device via USB cable and select “Arduino/Genuino Uno” port in Arduino IDE. Compile and Upload your sketch to the device using “Upload” button.</p>
+
+<p>After application will be uploaded and started it will try to connect to ThingsBoard node using mqtt client and upload “temperature” and “humidity” timeseries data once per second.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>When the application is running you can select “Arduino/Genuino Uno” port in Arduino IDE and open “Serial Monitor” in order to view debug information produced by serial output.</p>
+
+<h2 id="data-visualization">Data visualization</h2>
+
+<p>Finally, open ThingsBoard Web UI. You can access this dashboard by logging in as a tenant administrator. Use</p>
+
+<ul>
+  <li>login: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e296878c838c96a2968a8b8c8591808d839086cc8d9085">[email&#160;protected]</a></li>
+  <li>password: tenant</li>
+</ul>
+
+<p>in case of local ThingsBoard installation.</p>
+
+<p>Go to <strong>“Devices”</strong> section and locate <strong>“Arduino UNO Demo Device”</strong>, open device details and switch to <strong>“Latest telemetry”</strong> tab.
+If all is configured correctly you should be able to see latest values of <em>“temperature”</em> and <em>“humidity”</em> in the table.</p>
+
+<p><img src="/images/samples/arduino/temperature/attributes.png" alt="image" /></p>
+
+<p>After, open <strong>“Dashboards”</strong> section then locate and open <strong>“Arduino DHT22: Temperature &amp; Humidity Demo Dashboard”</strong>.
+As a result, you will see two time-series charts and two digital gauges displaying temperature and humidity level (similar to dashboard image in the introduction).</p>
+
+<h2 id="see-also">See also</h2>
+
+<p>Browse other <a href="/docs/samples">samples</a> or explore guides related to main ThingsBoard features:</p>
+
+<ul>
+  <li><a href="/docs/user-guide/attributes/">Device attributes</a> - how to use device attributes.</li>
+  <li><a href="/docs/user-guide/telemetry/">Telemetry data collection</a> - how to collect telemetry data.</li>
+  <li><a href="/docs/user-guide/rpc/">Using RPC capabilities</a> - how to send commands to/from devices.</li>
+  <li><a href="/docs/user-guide/rule-engine/">Rule Engine</a> - how to use rule engine to analyze data from devices.</li>
+  <li><a href="/docs/user-guide/visualization/">Data Visualization</a> - how to visualize collected data.</li>
+</ul>
+
+<h2 id="your-feedback">Your feedback</h2>
+
+<p>Don’t hesitate to star ThingsBoard on <strong><a href="https://github.com/thingsboard/thingsboard">github</a></strong> to help us spread the word.
+If you have any questions about this sample - post it on the <strong><a href="https://github.com/thingsboard/thingsboard/issues">issues</a></strong>.</p>
+
+<div id="share"></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    jqueryDefer(initSocials);
+    function initSocials() {
+        var scriptsList = [
+            {src: 'https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css', type: 'css'},
+            {src: 'https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css', type: 'css'},
+            {src: 'https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js', type: 'script'}
+        ];
+        loadNextScript(0, scriptsList,
+                function() {
+                    $("#share").jsSocials({
+                        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp", "telegram"],
+                        showLabel: false,
+                        showCount: false
+                    });
+                }
+        );
+    }
+</script>
+
+<h2 id="next-steps">Next steps</h2>
+
+<ul>
+  <li>
+    <p><a href="/docs/guides#AnchorIDGettingStartedGuides">Getting started guides</a> - These guides provide quick overview of main ThingsBoard features. Designed to be completed in 15-30 minutes.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDInstallationGuides">Installation guides</a> - Learn how to setup ThingsBoard on various available operating systems.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDConnectYourDevice">Connect your device</a> - Learn how to connect devices based on your connectivity technology or solution.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDDataVisualization">Data visualization</a> - These guides contain instructions how to configure complex ThingsBoard dashboards.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDDataProcessing">Data processing &amp; actions</a> - Learn how to use ThingsBoard Rule Engine.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDDataAnalytics">IoT Data analytics</a> - Learn how to use rule engine to perform basic analytics tasks.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDAdvancedFeatures">Advanced features</a> - Learn about advanced ThingsBoard features.</p>
+  </li>
+  <li>
+    <p><a href="/docs/guides#AnchorIDContribution">Contribution and Development</a> - Learn about contribution and development in ThingsBoard.</p>
+  </li>
+</ul>
+
+<p><br />
+<br /></p>
+
+
+  </div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/getting-started-guides/helloworld/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="/iot-use-cases/">Use cases</a>
+			<a href="https://blog.thingsboard.io/">Blog</a>
+			<a href="/docs/services/">Services</a>
+			<a href="/docs/contact-us/">Contact us</a>
+		</nav>
+		<div class="newsletterSubsContainer">
+			<script type="text/javascript" src="https://app.mailerlite.com/data/webforms/708170/r9r9x7.js?v5"></script>
+		</div>
+		<div class="center">
+			<div class="social">
+				<div>
+					<a href="https://twitter.com/thingsboard" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/thingsboard/thingsboard" class="github"><span>Github</span></a>
+					<a href="https://gitter.im/thingsboard/chat" class="gitter"><span>Gitter</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/thingsboard" class="stack-overflow"><span>Stack Overflow</span></a>
+				</div>
+				<div>
+					<a href="https://groups.google.com/forum/#!forum/thingsboard" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://www.youtube.com/thingsboard" class="youtube"><span>YouTube Channel</span></a>
+					<a href="https://www.facebook.com/thingsboard" class="facebook"><span>Facebook Page</span></a>
+				</div>
+			</div>
+		</div>
+		<div id="miceType" class="center">&copy; 2020 The ThingsBoard Authors</div>
+	</main>
+</footer>
+
+
+
+
+<style>
+  .cse .gsc-control-cse, .gsc-control-cse {
+    padding: 0;
+  }
+  .gsc-control-cse table, .gsc-control-cse-en table {
+    margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+    border-bottom: 0;
+  }
+</style>
+
+</body>
+</html>

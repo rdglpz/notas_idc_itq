@@ -1,0 +1,33 @@
+Ejemplo: Programa escritura analógica en un pin.
+
+Para escribir con estos pines usamos la funci\'{o}n analogWrite([pin/alias],[valor/variable]);
+
+\tiny
+\begin{verbatimtab}
+
+#define LED 3
+void setup() {
+	#Definimos el pin LED como salida
+ 	pinMode(LED,OUTPUT);
+}
+
+#Programa principal dentro del loop
+void loop() {
+
+  for(int i = 1; i <= 255; i++){
+    analogWrite(LED,i);
+    delay(10);
+    }
+    delay(1000);
+  for(int i = 255; i >= 1; i--){
+    analogWrite(LED,i);
+    delay(10);
+    }
+  delay(1000);
+}
+\end{verbatimtab}
+
+Si esta conectado un led al pin LED a la placa de Arduino. Que es lo que hace este programa.
+
+
+

@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Programaci\IeC {\'o}n de Entrada y Salida de Prop\IeC {\'o}sito General de la tarjeta de desarrollo}{3}{0}{1}
+\beamer@sectionintoc {2}{Pines de entrada y salida}{5}{0}{2}
+\beamer@sectionintoc {3}{Desarrollo de programas para actuadores. (B\IeC {\'a}sico)}{11}{0}{3}
+\beamer@sectionintoc {4}{Desarrollo de programas para sensores y actuadores (B\IeC {\'a}sico)}{14}{0}{4}
+\beamer@sectionintoc {5}{Desarrollo de programas para sensores y actuadores anal\IeC {\'o}gicos (B\IeC {\'a}sico) y Desarrollo de programas para adquisici\'on de datos}{17}{0}{5}
+\beamer@subsectionintoc {5}{1}{Sensor an\IeC {\'a}logo: conversi\IeC {\'o}n anal\IeC {\'o}gico digital}{19}{0}{5}
+\beamer@subsectionintoc {5}{2}{Leer datos desde diferentes tipos de Sensores. (IR*, micr\IeC {\'o}fonos, c\IeC {\'a}maras, GPS*, aceler\IeC {\'o}metros*, giroscopios*, sensores ultras\IeC {\'o}nicos*, etc...)}{24}{0}{5}
+\beamer@sectionintoc {6}{Desarrollo de programas para actuadores}{24}{0}{6}
+\beamer@sectionintoc {7}{Estimaci\IeC {\'o}n de frecuencias de muestreo y ancho de bits para diferentes sensores}{26}{0}{7}

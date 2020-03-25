@@ -1,0 +1,8 @@
+
+#define LED 2 //Damos el alias a nuestro pin 2.
+void setup(){
+pinMode(LED,OUTPUT); //Definimos el pin LED como salida. }
+void loop(){ //Definimos nuestra secuencia.
+digitalWrite(LED,HIGH); //Mandamos un ALTO al LED.
+delay(1000); //Tiempo en que permanece el LED prendido “un segundo”. digitalWrite(LED,LOW); //Mandamos un BAJO al LED.
+delay(1000); //Tiempo en que permanece el LED apagado “un segundo”. }

@@ -16,13 +16,15 @@ Proyecto control de inventario con un sensor ultrasónico
 
 # Presentación para el viernes 2 de Abril
 
-**Equipo 1: **
+**Equipo 1**  
+
 1.  Sensor de temperatura
 2.  sensor Acelerómetro-Giroscopio
 3.  actuador ventilador (motor)
 4.  actuador sensor pendiente 
 
-**Equipo 2**
+**Equipo 2**  
+
 1. Sensor ultrasónico
 2. Sensor GPS
 3. Actuador 1 (por seleccionar)

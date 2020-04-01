@@ -76,6 +76,11 @@
 \usepackage{fancyvrb}
 \usepackage{moreverb}
 
+\theoremstyle{definition}
+\newtheorem{defn}{Definici\'{o}n}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+
 
 
 \titlegraphic{
@@ -410,12 +415,117 @@ Si esta conectado un led al pin LED a la placa de Arduino. Que es lo que hace es
 
 \end{frame}
 
-\section{Estimación de frecuencias de muestreo y ancho de bits para diferentes sensores}
+\section{Estimación de frecuencias de muestreo}
 
-\begin{frame}
+\begin{frame}[fragile]{Frecuencia de Adquisición de datos con Arduino}
+
+{Tiempo de muestreo}
+
+\begin{defn}
+Es el tiempo que transcurre entre dos mediciones consecutivas y se expresa en frecuencia ($Hz$)
+\end{defn}
+
+Es muy importante conocer:
+\begin{itemize}
+	\item La frecuencia en la que un circuito digital lee los datos.
+ 	\item La frecuencia en la que el sensor registra una medición.
+\end{itemize}
+
+%Existen diferentes técnicas para calcular la frecuencia de muestreo dos de ellas son:
+
+%1. Aplicación del Teorema de muestreo de Nyquist. Cuando la señal es de banda limitada.
+
+%2.  
 
 \end{frame}
 
+
+
+\begin{frame}[fragile]{Estimación de frecuencia de la tarjeta de desarrollo \footnote{https://booleanbite.com/web/adquisicion-de-datos-con-arduino-i-tiempo-de-muestreo-y-resolucion/}}
+
+\tiny
+\begin{verbatimtab}
+void setup(){
+	Serial.begin(9600);
+	muestreo();
+}
+
+void loop(){
+}
+
+void muestreo(){
+
+	unsigned long time1=0;
+	unsigned long time=0;
+	Serial.println("*************************");
+  	Serial.println("ENSAYO TIEMPO DE MUESTRO:");
+  	Serial.println("*************************");
+  	for(byte i =0; i<4; i++){
+    	time1=micros();
+    	int A=analogRead(A0);
+    	time=micros()-time1;
+    	Serial.print(" Muestra: ");
+    	Serial.print(i+1);
+    	Serial.print(" Tiempo: ");
+    	(time);
+  	}
+
+}
+\end{verbatimtab}
+
+\end{frame}
+
+
+\begin{frame}{Estimación de frecuencia de muestreo teórico}
+
+\begin{itemize}
+\item Teorema de muestreo de Nyquist-Shanon para una señal con banda limitada. Dice que para poder reconstruir adecuadamente esta señal, debemos de muestrear con al menos el doble de la frecuencia de la señal analógica.\footnote{bit.ly/tnyqsh}
+\item Estimación de tiempo de retardo para señales no lineales y caóticas utilizando la fórmula de la información mutua \footnote{https://bit.ly/3amINtx}. (Método general)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Estimación de frecuencia de muestreo teórico}
+
+
+
+\begin{itemize}
+\item Teorema de muestreo de Nyquist-Shanon. Dice que para poder reconstruir adecuadamente esta señal, debemos de muestrear con al menos el doble de la frecuencia de la señal analógica.\footnote{bit.ly/tnyqsh}
+\item Estimación de tiempo del tiempo retardo (usado como frecuencia de referecia) para señales no lineales y caóticas utilizando la fórmula de la información mutua \footnote{https://bit.ly/3amINtx}. (Método general). \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Estimación de frecuencia de muestreo teórico}
+
+Nyquist-Shanon nos dice que si conocemos la frecuencia de una señal tomemos muestras al doble de la frecuencia. 
+
+Si no la conocemos, podemos recurrir a calcular la fórmula de información mutua para mediciones en diferentes intervalos. 
+
+
+\end{frame}
+
+
+
+\begin{frame}{Estimación de frecuencia de muestreo teórico}
+
+
+$$
+I_\epsilon = \sum_{i,j} p_{i,j}(\tau)\text{ln}p_{i,j}-2\sum_i {p_i}\text{ln}p_i
+$$
+$p_{i,j}$ es la probabilidad de transición de una medición $s(t)$ esté contenida en en intervalo $i$ a uno $j$.
+$p_i$: es la probabilidad de observar el estado $i$.
+
+Para valores pequeños de $\tau$ se esperan grandes valores de  $I_\epsilon$ indicando poca información. 
+
+Para determinar el mejor valor, se calcula $I_\epsilon$ para  cada retardo $\tau$. El primer mínimo nos indica que es el retardo óptimo que nos da la mayor información de la señal.
+
+%https://www.researchgate.net/publication/8399248_Chaotic_Behavior_of_Gastric_Migrating_Myoelectrical_Complex/figures?lo=1
+%https://w3.ual.es/~vruiz/Docencia/Apuntes/Signals/Sampling/index.html#x1-60004
+ 
+
+\end{frame}
 
 
 

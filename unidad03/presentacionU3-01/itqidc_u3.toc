@@ -8,4 +8,4 @@
 \beamer@subsectionintoc {5}{1}{Sensor an\IeC {\'a}logo: conversi\IeC {\'o}n anal\IeC {\'o}gico digital}{19}{0}{5}
 \beamer@subsectionintoc {5}{2}{Leer datos desde diferentes tipos de Sensores. (IR*, micr\IeC {\'o}fonos, c\IeC {\'a}maras, GPS*, aceler\IeC {\'o}metros*, giroscopios*, sensores ultras\IeC {\'o}nicos*, etc...)}{24}{0}{5}
 \beamer@sectionintoc {6}{Desarrollo de programas para actuadores}{24}{0}{6}
-\beamer@sectionintoc {7}{Estimaci\IeC {\'o}n de frecuencias de muestreo y ancho de bits para diferentes sensores}{26}{0}{7}
+\beamer@sectionintoc {7}{Estimaci\IeC {\'o}n de frecuencias de muestreo}{26}{0}{7}

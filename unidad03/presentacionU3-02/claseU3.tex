@@ -1,0 +1,195 @@
+\documentclass{beamer}
+
+\usetheme[progressbar=foot,numbering=fraction]{metropolis}
+
+
+
+\usepackage{appendixnumberbeamer}
+
+
+%centrogeo orange
+\definecolor{beamer@centrogeo}{RGB}{219,132,61}
+
+%rareblue
+\definecolor{beamer@centrogeo}{RGB}{2, 104, 161}
+
+%itq orange
+\definecolor{beamer@centrogeo}{RGB}{239, 158, 9}
+
+% centrogeo brown
+\definecolor{color2}  {RGB}{110,60,20}
+
+\definecolor{color2}  {RGB}{61, 88, 122}
+
+%centrogeo light orange
+\definecolor{beamer@centrogeoLightOrange} {RGB}{255,172,101}% 
+
+\definecolor{beamer@centrogeoLightOrange} {RGB}{61, 104, 161}% 
+
+%https://www.centrogeo.org.mx/lgac-ciencias-de-informacion-geoespacial/lgac-cig-ciencias-de-informacion-geoespacial
+
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=beamer@centrogeoLightOrange}
+\setbeamercolor{example text}{fg=green!50!black}
+
+\setbeamercolor{structure}{fg=color2}
+
+\setbeamercolor{background canvas}{parent=normal text}
+\setbeamercolor{background}{parent=background canvas}
+	
+\setbeamercolor{palette primary}{fg=white,bg=beamer@centrogeo} % changed this
+\setbeamercolor{palette secondary}{use=structure,fg=structure.fg!100!green} % changed this
+\setbeamercolor{palette tertiary}{use=structure,fg=structure.fg!100!green}
+
+
+
+\usepackage[spanish, english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{url}
+%\usepackage{subfig}
+\usepackage{subcaption}
+
+\usepackage{caption}
+
+
+
+
+%\usepackage{dsmath}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage[noend]{algpseudocode}
+
+\usepackage{graphicx}
+%\usepackage{subcaption}
+\usepackage{bibentry}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{moreverb}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definici\'{o}n}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+
+
+
+\titlegraphic{
+%\includegraphics[height=1.0cm]{figures/logo_cicige_L.png} \hfill  
+
+\includegraphics[height=1.5cm]{TecNM_logo.png}  
+\hfill 
+\includegraphics[height=1.5cm]{itq.png} \hfill 
+%5\includegraphics[height=0.9cm]{figures/EscudoDeLaUAQ.jpg}
+
+}
+
+\title{Internet de las Cosas:  Unidad 3}
+\subtitle{Sensores y actuadores}
+
+
+\author{Dr. Rodrigo López Farías. \\}
+
+\institute{Instituto Tecnológico de Querétaro \\ Ingeniería en Sistemas Computacionales}
+
+\date{Ciclo escolar Ene-Junio 2020}
+
+
+\begin{document}
+
+\frame{\maketitle}
+
+
+\begin{frame}{Índice}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+
+\section{Proyecto Integrador Unidad 5}
+\begin{frame}{5.1 Diseño de sistemas empleando plataformas de IoT, incluyendo documentacion y diagramacion.}
+
+Propuesta de arquitectura general: Conectar sensores a la Placa de desarrollo (Arduino Uno con ESP8266 o NODMCU) y transmitir por medio de mqtt a un PC ( RaspberryPi).
+
+Aplicación propuesta: Orientar esta arquitectura a la construcción de un dispositivo portable (Bicicleta - Caminando) para medición de gases contaminantes a nivel de suelo, utilizando un GPS, acelerómetro-giroscopio, sensor de gases contaminantes.
+\end{frame}
+
+\section{Ante-proyecto propuesto (5.1) 1/2}
+
+\begin{frame}{Pre-propuestas?}
+Equipo 1 :  Luis Angel - Bogar
+
+Equipo 2 :  Ariadna - Carlos
+
+\end{frame}
+
+\section{Microcontroladores e IDC}
+
+\begin{frame}
+Ya revisamos:
+\begin{itemize}
+\item Un protocolo de mensajes para IDC y como enviar y recibir mensajes para controlar ejecución de dispositivos virtuales (Conectividad por internet). 
+\item Manejo general de entradas y salidas digitales y analógicas de GPIO en una tarjeta de desarrollo. (Programación de objetos) 
+\item Falta: Unir Tarjeta de desarrollo + MQTT 
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Internet de las cosas con ESP8266-01}
+
+\begin{itemize}
+\item Opción 1: Arduino - ESP8266. 
+	\begin{itemize}
+	\item Mas costoso (precio de arduino uno  + esp8266) \url{https://bit.ly/2R2MQnn}
+	\item Mas complicado de programar (alambrar arduino uno al esp8266-01) 
+	\item La comunicación de los sensores con el ESP es através de mensajes por puerto serial.
+	\end{itemize}
+\item Opcion dos: NODMCU. 
+	\begin{itemize}
+		\item Mas barato y mas prestaciones. (cuesta un poco mas caro que el esp8266)
+		\item Más fácil de programar (ESP8266 ya está microalambrado al microcontrolador) 
+		\item compatible con arduino.
+		\item https://bit.ly/3azPV5X. (Les dejo de tarea que lo revisen)
+	\end{itemize}
+  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Ejemplo comunicación del ESP8266 con MQTT de NODMCU }
+
+Configuración
+\begin{itemize}
+\item Instalar esp8266 NODEMCU 0.9. https://bit.ly/2UTrCZY
+\item Instalar pubsub desde el manejador de librerias
+\item Instrucciones adicionales estan en el ejemplo main_mqtt
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

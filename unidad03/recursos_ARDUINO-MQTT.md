@@ -18,17 +18,27 @@ Proyecto control de inventario con un sensor ultrasónico
 
 **Equipo 1**  
 
-1.  Sensor de temperatura
+1.  Sensor de temperatura DS1820 con protocolo 1-wire
 2.  sensor Acelerómetro-Giroscopio
 3.  actuador ventilador (motor)
-4.  actuador sensor pendiente 
+4.  Sensor de presión digital BMP180. Comunicación con protocolo I2C.
 
 **Equipo 2**  
 
 1. Sensor ultrasónico
 2. Sensor GPS
-3. Actuador 1 (por seleccionar)
-4. Actuador 2 (por seleccionar)
+3. sensor táctil
+4. sensor magnético
+
+
+
+# Precio Tarjeta de desarrollo, algunos sensores y actuadores.
+
+*   ESP8266-01: $187.00
+*   NODMCU $195.0
+*   Regulador de voltaje 3.3V o 5V. ~$60.00
+*   Fuente de alimentación Externa $70
+*   
 
 
 

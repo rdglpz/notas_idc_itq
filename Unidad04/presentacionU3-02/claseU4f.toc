@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Big Data}{3}{0}{1}
+\beamer@sectionintoc {2}{Ante-proyecto propuesto (5.1) 1/2}{5}{0}{2}
+\beamer@sectionintoc {3}{Microcontroladores e IDC}{7}{0}{3}

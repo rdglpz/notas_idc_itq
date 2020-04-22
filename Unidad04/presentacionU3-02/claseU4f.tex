@@ -1,0 +1,174 @@
+\documentclass{beamer}
+
+\usetheme[progressbar=foot,numbering=fraction]{metropolis}
+
+
+
+\usepackage{appendixnumberbeamer}
+
+
+%centrogeo orange
+\definecolor{beamer@centrogeo}{RGB}{219,132,61}
+
+%rareblue
+\definecolor{beamer@centrogeo}{RGB}{2, 104, 161}
+
+%itq orange
+\definecolor{beamer@centrogeo}{RGB}{239, 158, 9}
+
+% centrogeo brown
+\definecolor{color2}  {RGB}{110,60,20}
+
+\definecolor{color2}  {RGB}{61, 88, 122}
+
+%centrogeo light orange
+\definecolor{beamer@centrogeoLightOrange} {RGB}{255,172,101}% 
+
+\definecolor{beamer@centrogeoLightOrange} {RGB}{61, 104, 161}% 
+
+%https://www.centrogeo.org.mx/lgac-ciencias-de-informacion-geoespacial/lgac-cig-ciencias-de-informacion-geoespacial
+
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=beamer@centrogeoLightOrange}
+\setbeamercolor{example text}{fg=green!50!black}
+
+\setbeamercolor{structure}{fg=color2}
+
+\setbeamercolor{background canvas}{parent=normal text}
+\setbeamercolor{background}{parent=background canvas}
+	
+\setbeamercolor{palette primary}{fg=white,bg=beamer@centrogeo} % changed this
+\setbeamercolor{palette secondary}{use=structure,fg=structure.fg!100!green} % changed this
+\setbeamercolor{palette tertiary}{use=structure,fg=structure.fg!100!green}
+
+
+
+\usepackage[spanish, english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{url}
+%\usepackage{subfig}
+\usepackage{subcaption}
+
+\usepackage{caption}
+
+
+
+
+%\usepackage{dsmath}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage[noend]{algpseudocode}
+
+\usepackage{graphicx}
+%\usepackage{subcaption}
+\usepackage{bibentry}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{moreverb}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definici\'{o}n}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+
+
+
+\titlegraphic{
+%\includegraphics[height=1.0cm]{figures/logo_cicige_L.png} \hfill  
+
+\includegraphics[height=1.5cm]{TecNM_logo.png}  
+\hfill 
+\includegraphics[height=1.5cm]{itq.png} \hfill 
+%5\includegraphics[height=0.9cm]{figures/EscudoDeLaUAQ.jpg}
+
+}
+
+\title{Internet de las Cosas:  Unidad 4}
+\subtitle{Tecnologías asociadas al IdC}
+
+
+\author{Dr. Rodrigo López Farías. \\}
+
+\institute{Instituto Tecnológico de Querétaro \\ Ingeniería en Sistemas Computacionales}
+
+\date{Ciclo escolar Ene-Junio 2020}
+
+
+\begin{document}
+
+\frame{\maketitle}
+
+
+\begin{frame}{Índice}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+
+
+\section{Big Data}
+
+
+
+
+\begin{frame}{4.1 Big Data}
+
+
+
+
+
+
+\begin{defn}
+Big Data, Macrodatos, datos masivos o a gran escala hace referencia a un gran conjunto de datos muy complejos que son tratados de manera especial para poder extraer información valiosa.
+\end{defn}
+
+Uno de los retos es la organización, adquisición y administración de estos datos.
+
+
+
+\end{frame}
+
+\section{Ante-proyecto propuesto (5.1) 1/2}
+
+\begin{frame}{Pre-propuestas?}
+Equipo 1 :  Luis Angel - Bogar
+
+Equipo 2 :  Ariadna - Carlos
+
+\end{frame}
+
+\section{Microcontroladores e IDC}
+
+\begin{frame}
+Ya revisamos:
+\begin{itemize}
+\item Un protocolo de mensajes para IDC y como enviar y recibir mensajes para controlar ejecución de dispositivos virtuales (Conectividad por internet). 
+\item Manejo general de entradas y salidas digitales y analógicas de GPIO en una tarjeta de desarrollo. (Programación de objetos) 
+\item Falta: Unir Tarjeta de desarrollo + MQTT 
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\end{document}

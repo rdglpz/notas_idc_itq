@@ -69,16 +69,15 @@
 
 
 
-Introducción a cassandra 
-
-1.  Cómo trabaja?
-2.  como es su arquitectura distribuida 
-3.  Cual es su sistema de archivos
-
-1.  1.   https://dzone.com/articles/easy-database-migration-with-liquibase 
-    2.  https://www.datastax.com/resources/ebook/oreilly-cassandra-definitive-guide
-    3.  https://dzone.com/articles/introduction-apache-cassandras
-    4.  https://blog.yugabyte.com/apache-cassandra-architecture-how-it-works-lightweight-transactions/
+7.  Introducción a cassandra 
+    1.  Cómo trabaja?
+    2.  como es su arquitectura distribuida 
+    3.  Cual es su sistema de archivos
+    4.  **Referencias**
+        1.  https://dzone.com/articles/easy-database-migration-with-liquibase 
+        2.  https://www.datastax.com/resources/ebook/oreilly-cassandra-definitive-guide
+        3.  https://dzone.com/articles/introduction-apache-cassandras
+        4.  https://blog.yugabyte.com/apache-cassandra-architecture-how-it-works-lightweight-transactions/
 
 
 

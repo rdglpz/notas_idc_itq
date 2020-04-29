@@ -4,7 +4,10 @@
 
 1.  Compresión de datos en IdC .
 
-    1.  https://www.researchgate.net/publication/329443960_A_Data_Compression_and_Storage_Optimization_Framework_for_IoT_Sensor_Data_in_Cloud_Storage
+    1.  Que es fog computing
+    2.  Que problema resuelve
+    3.  Presentar un ejemplo de algoritmo de fog computing. 
+    4.  https://www.researchgate.net/publication/329443960_A_Data_Compression_and_Storage_Optimization_Framework_for_IoT_Sensor_Data_in_Cloud_Storage
 
 2.  Algoritmo mapreduce 
 
@@ -20,6 +23,8 @@
 
         1.  Explicación muy sencilla https://www.youtube.com/watch?v=b27hWyhq9oo
         2.  MapReduce en Hadoop https://blogs.solidq.com/es/business-analytics/que-es-mapreduce/
+        3.  https://www.es.w3ki.com/map_reduce/map_reduce_algorithm.html
+        4.  https://www.adictosaltrabajo.com/2014/03/03/mapreduce-basic/
 
         
 
@@ -31,7 +36,7 @@
 
     3.  cuales son los 4 componentes principales?
 
-    4.  Que es HDFS 
+    4.  Que es HDFS y su descripción
 
         1.  Referencias
 
@@ -51,6 +56,7 @@
     3.  https://drive.google.com/open?id=1IT7u9ZAuDOGWv7iA2_cT8cI_-aSeOPMF
     4.   https://elentornodehadoop.wordpress.com/tag/arquitectura-hadoop/
     5.   https://data-flair.training/blogs/how-hadoop-works-internally/ 
+    6.  
 
 6.  Investigación Comparativa de características generales de Bases de datos NoSQL al menos Cassandra DB vs Hadoop, Couch DB (+ algún otro, hive ) (2 personas). 
 
@@ -63,10 +69,16 @@
 
 
 
-Introducción a cassandra Cómo trabaja? :
+Introducción a cassandra 
+
+1.  Cómo trabaja?
+2.  como es su arquitectura distribuida 
+3.  Cual es su sistema de archivos
 
 1.  1.   https://dzone.com/articles/easy-database-migration-with-liquibase 
     2.  https://www.datastax.com/resources/ebook/oreilly-cassandra-definitive-guide
+    3.  https://dzone.com/articles/introduction-apache-cassandras
+    4.  https://blog.yugabyte.com/apache-cassandra-architecture-how-it-works-lightweight-transactions/
 
 
 

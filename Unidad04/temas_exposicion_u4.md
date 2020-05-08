@@ -13,13 +13,15 @@
 
     1.  De donde proviene el algoritmo de map reduce
 
-    2.  Que problemas resuelven con facilidad y cuales no. (Pros y contras)
+    2.  Aplicaciones
 
-    3.  Mostrar un ejemplo diferente al del video que muestre el concepto en la práctica de mapreduce. El ejemplo práctico del libro *Hadoop the definitive guide* página 17 - 21que responde a la pregunta Cuál es la temperatura registrada mas alta de cada año en la base de datos del NCDC weather records?
+    3.  Que problemas resuelven con facilidad y cuales no. (Pros y contras)
 
-    4.  Que distribuciones implementan mapreduce.
+    4.  Mostrar un ejemplo diferente al del video que muestre el concepto en la práctica de mapreduce. El ejemplo práctico del libro *Hadoop the definitive guide* página 17 - 21que responde a la pregunta Cuál es la temperatura registrada mas alta de cada año en la base de datos del NCDC weather records?
 
-    5.  **Referencias**
+    5.  Que distribuciones implementan mapreduce.
+
+    6.  **Referencias**
 
         1.  Explicación muy sencilla https://www.youtube.com/watch?v=b27hWyhq9oo
         2.  MapReduce en Hadoop https://blogs.solidq.com/es/business-analytics/que-es-mapreduce/
@@ -49,7 +51,7 @@
 
     1.  https://drive.google.com/open?id=1D615K2jC9PPbBDU2JmQkDdZu9lWr3e4J
 
-5.  Componentes de apache hadoop en general y para que sirve cada uno, (2 personas). 
+5.  Componentes de apache hadoop en general y para que sirve cada uno, (1 personas). 
 
     1.  Intro a Hadoop https://www.youtube.com/watch?v=tOB3V2iklbE
     2.  https://drive.google.com/open?id=17id24jVzX6E-EkxWNBRziEqbK5UgsChS (Sección How hadoop works)
@@ -58,7 +60,7 @@
     5.   https://data-flair.training/blogs/how-hadoop-works-internally/ 
     6.  
 
-6.  Investigación Comparativa de características generales de Bases de datos NoSQL al menos Cassandra DB vs Hadoop, Couch DB (+ algún otro, hive ) (2 personas). 
+6.  Investigación Comparativa de características generales de Bases de datos NoSQL al menos Cassandra DB vs Hadoop, Couch DB (+ algún otro, hive ) (1 personas). 
 
     1.  https://drive.google.com/open?id=1rBkzO2Osk4o6nVQBumRwsD-eNyBBoX8G
     2.  https://drive.google.com/open?id=17id24jVzX6E-EkxWNBRziEqbK5UgsChS

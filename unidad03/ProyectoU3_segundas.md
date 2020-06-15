@@ -18,12 +18,12 @@
 
 El proyecto consiste en controlar el ángulo del microservo de dos maneras:
 
-Modo 1: Proporcionalmente a una señal generada manulamente por un potenciómetro.  
-Modo 2: A una senal generada por la temperatura registrada por un sensor de temperatura.
+Modo 1: Proporcionalmente a una señal generada manulamente por un potenciómetro. (40%) 
+Modo 2: Proporcionalmente a una señal generada por la temperatura registrada por un sensor de temperatura.(40%)
 
-El proyecto debe tener un mecanismo de selección (puede ser un push button, o un dip switch) en la misma placa para decidir si queremos modificar o controlar el ángulo del servomotor con el modo 1 o con el modo 2.
+El proyecto debe tener un mecanismo de selección (puede ser un push button, o un dip switch) en la misma placa para decidir si queremos modificar o controlar el ángulo del servomotor con el modo 1 o con el modo 2. (10%)
 
-Los visualizadores deben indicar el ángulo actual del servomotor, y el led el modo seleccionado de control de ángulo.
+Los visualizadores deben indicar el ángulo actual del servomotor, y el led el modo seleccionado de control de ángulo.(10%)
 
 
 

@@ -44,7 +44,7 @@ Los visualizadores deben indicar el ángulo actual del servomotor, y el led el m
 
 Calificación:
 
-* Si el proyecto funciona tal como se pide en el punto 2, El documento se calificara sobre el 100% de la calificacion de la unidad. 
+* Si el proyecto funciona tal como se pide en el punto 2, el documento se calificara sobre el 100% de la calificacion de la unidad. De otra manera habra una penalizacion por cada punto que no se cumpla.
 
 * Cada punto del documento se evaluará de acuerdo a la claridad y calidad de su contenido.
 
